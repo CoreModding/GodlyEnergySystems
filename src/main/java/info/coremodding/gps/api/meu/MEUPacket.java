@@ -5,8 +5,8 @@ package info.coremodding.gps.api.meu;
  */
 public abstract class MEUPacket {
 
-    int amount = 0;
-    String meta = "";
+    private int amount = 0;
+    private String meta = "";
 
     /**
      * @param add The amount to add

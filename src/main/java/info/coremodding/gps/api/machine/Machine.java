@@ -15,13 +15,13 @@ import java.util.List;
  */
 public abstract class Machine extends TileEntity {
 
-    List<MEUPacket> packets;
+    private List<MEUPacket> packets;
 
     /**
      * @param packet The packet to deposit
      * @return The new energy
      */
-    public int depositEnergy(MEUPacket packet) {
+    int depositEnergy(MEUPacket packet) {
         this.packets.add(packet);
         this.packets = MEUSystemManager.mergePackets(this.packets);
         return packet.getAmount();
@@ -30,7 +30,7 @@ public abstract class Machine extends TileEntity {
     /**
      * @return These packets
      */
-    public List<MEUPacket> getPackets() {
+    protected List<MEUPacket> getPackets() {
         return this.packets;
     }
 
@@ -88,7 +88,7 @@ public abstract class Machine extends TileEntity {
     /**
      * @param packets The new packets
      */
-    public void setPackets(List<MEUPacket> packets) {
+    void setPackets(List<MEUPacket> packets) {
         this.packets = packets;
     }
 
