@@ -7,7 +7,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 /**
  * @author James
- *         <p/>
+ *         <p>
  *         The main class
  */
 @Mod(modid = "zeus_GodlyPowerSystems", name = "Godly Power Systems", version = "Alpha Dev 1")

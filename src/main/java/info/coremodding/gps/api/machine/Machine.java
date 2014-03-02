@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * @author James
- *         <p/>
+ *         <p>
  *         All machines extend this
  */
 public abstract class Machine extends TileEntity {
