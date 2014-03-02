@@ -52,7 +52,7 @@ public abstract class Machine extends TileEntity {
                                     .newInstance();
                             packet.setMeta(nbt.getString(i + "_meta"));
                             packet.addAmount(nbt.getInteger(i + "_amount"));
-                            if (packet.getMeta().equals(null)
+                            if (packet.getMeta() == null
                                     || packet.getAmount() == 0)
                                 System.out
                                         .println("Errored packet? Meta is null or amount is 0. Demolishing.");
