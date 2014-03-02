@@ -5,55 +5,53 @@ package info.coremodding.gps.api.meu;
  */
 public abstract class MEUPacket {
 
-	int amount = 0;
-	String meta = "";
+    int amount = 0;
+    String meta = "";
 
-	/**
-	 * @param add
-	 *            The amount to add
-	 * @return The new amount
-	 */
-	public MEUPacket addAmount(int add) {
-		this.amount += add;
-		return this;
-	}
+    /**
+     * @param add The amount to add
+     * @return The new amount
+     */
+    public MEUPacket addAmount(int add) {
+        this.amount += add;
+        return this;
+    }
 
-	/**
-	 * @return The amount this packet has
-	 */
-	public int getAmount() {
-		return this.amount;
-	}
+    /**
+     * @return The amount this packet has
+     */
+    public int getAmount() {
+        return this.amount;
+    }
 
-	/**
-	 * This would be used in clear pipes, or an amount bar, ect
-	 * 
-	 * @return What color should the MEU show up as?
-	 */
-	@SuppressWarnings("static-method")
-	public String getColor() {
-		return "FFFFFF";
-	}
+    /**
+     * This would be used in clear pipes, or an amount bar, ect
+     *
+     * @return What color should the MEU show up as?
+     */
+    @SuppressWarnings("static-method")
+    public String getColor() {
+        return "FFFFFF";
+    }
 
-	/**
-	 * @return The meta of this packet
-	 */
-	public String getMeta() {
-		return this.meta;
-	}
+    /**
+     * @return The meta of this packet
+     */
+    public String getMeta() {
+        return this.meta;
+    }
 
-	/**
-	 * @return The name of the packet
-	 */
-	public abstract String getName();
+    /**
+     * @return The name of the packet
+     */
+    public abstract String getName();
 
-	/**
-	 * @param meta
-	 *            The meta to set to
-	 * @return The instance of this
-	 */
-	public MEUPacket setMeta(String meta) {
-		this.meta = meta;
-		return this;
-	}
+    /**
+     * @param meta The meta to set to
+     * @return The instance of this
+     */
+    public MEUPacket setMeta(String meta) {
+        this.meta = meta;
+        return this;
+    }
 }
