@@ -12,38 +12,47 @@ import java.io.ObjectOutputStream;
 /**
  * @author James An MEU packet carrier for items
  */
-public class MEUTypeItem extends MEUPacket {
-
+public class MEUTypeItem extends MEUPacket
+{
+    
     /**
      * @return The contents of the packet
      */
-    public ItemStack[] getContents() {
+    public ItemStack[] getContents()
+    {
         ByteArrayInputStream in = new ByteArrayInputStream(this.getMeta()
                 .getBytes());
         ObjectInputStream is;
-        try {
+        try
+        {
             is = new ObjectInputStream(in);
             return (ItemStack[]) is.readObject();
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             e.printStackTrace();
         }
         return null;
     }
-
+    
     @Override
-    public String getName() {
+    public String getName()
+    {
         return "items";
     }
-
+    
     /**
-     * @param contents The contents to set
+     * @param contents
+     *            The contents to set
      * @return This
      */
-    public MEUTypeItem setContents(ItemStack... contents) {
+    public MEUTypeItem setContents(ItemStack... contents)
+    {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        try (ObjectOutputStream os = new ObjectOutputStream(out)) {
+        try (ObjectOutputStream os = new ObjectOutputStream(out))
+        {
             os.writeObject(contents);
-        } catch (IOException e) {
+        } catch (IOException e)
+        {
             e.printStackTrace();
         }
         this.setMeta(String.valueOf(out.toByteArray()));

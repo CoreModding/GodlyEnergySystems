@@ -3,7 +3,7 @@
  */
 /**
  * @author James
- *
- * MEU stuff
+ * 
+ *         MEU stuff
  */
 package info.coremodding.gps.api.meu;

@@ -3,6 +3,6 @@
  */
 /**
  * @author James
- * Some default MEU types
+ *         Some default MEU types
  */
 package info.coremodding.gps.meutypes;

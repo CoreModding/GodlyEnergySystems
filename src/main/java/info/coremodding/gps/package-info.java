@@ -3,6 +3,6 @@
  */
 /**
  * @author James
- * The GPS base package
+ *         The GPS base package
  */
 package info.coremodding.gps;

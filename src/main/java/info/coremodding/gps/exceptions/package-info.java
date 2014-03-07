@@ -3,6 +3,6 @@
  */
 /**
  * @author James
- * Mod exceptions
+ *         Mod exceptions
  */
 package info.coremodding.gps.exceptions;

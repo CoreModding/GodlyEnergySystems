@@ -11,19 +11,22 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
  *         The main class
  */
 @Mod(modid = "zeus_GodlyPowerSystems", name = "Godly Power Systems", version = "Alpha Dev 1")
-public class GodlyPowerSystems {
-
+public class GodlyPowerSystems
+{
+    
     /**
      * The mod instance used by forge
      */
     @Instance("zeus_GodlyPowerSystems")
     public static GodlyPowerSystems gps;
-
+    
     /**
-     * @param evt The event that triggered the method
+     * @param evt
+     *            The event that triggered the method
      */
     @EventHandler
-    public void preinit(FMLPreInitializationEvent evt) {
-
+    public void preinit(FMLPreInitializationEvent evt)
+    {
+        
     }
 }

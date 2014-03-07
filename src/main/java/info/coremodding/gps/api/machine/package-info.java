@@ -3,7 +3,7 @@
  */
 /**
  * @author James
- *
- * All machine stuff
+ * 
+ *         All machine stuff
  */
 package info.coremodding.gps.api.machine;
