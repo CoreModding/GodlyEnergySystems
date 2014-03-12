@@ -81,7 +81,8 @@ public class MEUSystemManager
             {
                 MEUPacket old = packets.get(packet1.getName());
                 old.setMeta(old.getMeta() + packet1.getMeta());
-                packets.replace(old.getName(), old);
+                packets.remove(old.getName());
+                packets.put(old.getName(), old);
             }
         }
         ArrayList<MEUPacket> returnable = new ArrayList<>();
