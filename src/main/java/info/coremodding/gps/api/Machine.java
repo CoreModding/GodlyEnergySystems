@@ -1,10 +1,13 @@
 package info.coremodding.gps.api;
 
-import info.coremodding.api.locations.GPSLocation;
+import info.coremodding.gps.internal.Location;
 import info.coremodding.gps.internal.Packet;
+import info.coremodding.gps.internal.Serializer;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
 /**
@@ -17,7 +20,7 @@ public abstract class Machine extends TileEntity
     /**
      * The packet that contains all of this machine's contents
      */
-    public Packet MachinePacket;
+    public Packet MachinePacket = new Packet();
     
     @Override
     public void updateEntity()
@@ -81,7 +84,7 @@ public abstract class Machine extends TileEntity
      */
     public ArrayList<Machine> getTouching()
     {
-        GPSLocation loc = new GPSLocation(this.xCoord, this.yCoord,
+        Location loc = new Location(this.xCoord, this.yCoord,
                 this.zCoord, this.worldObj);
         if (loc.getWorld() != null)
         {
@@ -114,4 +117,45 @@ public abstract class Machine extends TileEntity
         }
         return null;
     }
+    
+    @Override
+    public void writeToNBT(NBTTagCompound nbt)
+    {
+        try
+        {
+            nbt.setByteArray("MachinePacket",
+                    Serializer.serialize(this.MachinePacket));
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
+    @Override
+    public void readFromNBT(NBTTagCompound nbt)
+    {
+        try
+        {
+            this.MachinePacket = (Packet) Serializer.deserialize(nbt
+                    .getByteArray("MachinePacket"));
+        } catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * @param nbt
+     *            The NBT to write to
+     */
+    public abstract void writeNBT(NBTTagCompound nbt);
+    
+    /**
+     * @param nbt
+     *            The NBT to read from
+     */
+    public abstract void readNBT(NBTTagCompound nbt);
 }
