@@ -1,6 +1,7 @@
 package info.coremodding.gps.internal;
 
 import info.coremodding.gps.api.IncorrectValueException;
+import info.coremodding.gps.api.Machine;
 import info.coremodding.gps.api.PacketDoesntExistException;
 import info.coremodding.gps.api.PacketInDebtException;
 
@@ -147,13 +148,12 @@ public class Packet
      * @author James
      *         A sub-packet
      */
-    private static class SubPacket
+    public static class SubPacket
     {
         
         /**
          * How much space one unit of the packet takes up
          */
-        @SuppressWarnings("unused")
         public final int    size;
         
         /**
@@ -165,6 +165,16 @@ public class Packet
          * How many units packet contains
          */
         public int          amount;
+        
+        /**
+         * The last machine the packet was at
+         */
+        public Machine      lastAt;
+        
+        /**
+         * The machine the packet is currently at
+         */
+        public Machine      currentlyAt;
         
         /**
          * @param type
@@ -179,6 +189,16 @@ public class Packet
         {
             this.size = size;
             this.type = type;
+        }
+        
+        /**
+         * @param machine
+         *            The machine to notify the packet it was last at
+         */
+        public void notify(Machine machine)
+        {
+            this.lastAt = this.currentlyAt;
+            this.currentlyAt = machine;
         }
     }
 }
