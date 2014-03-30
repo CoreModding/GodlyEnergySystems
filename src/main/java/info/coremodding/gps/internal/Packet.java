@@ -5,24 +5,30 @@ import info.coremodding.gps.api.Machine;
 import info.coremodding.gps.api.PacketDoesntExistException;
 import info.coremodding.gps.api.PacketInDebtException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * @author James
  *         A packet of energy or items
  */
-public class Packet
+public class Packet implements Serializable
 {
+    
+    /**
+     * The serial ID for this class
+     */
+    private static final long          serialVersionUID = -4279079202475122829L;
     
     /**
      * All of the subpackets this contains
      */
-    private final ArrayList<SubPacket> subpackets = new ArrayList<>();
+    private final ArrayList<SubPacket> subpackets       = new ArrayList<>();
     
     /**
      * How much space this packet takes up
      */
-    public int                         size       = 0;
+    public int                         size             = 0;
     
     /**
      * @return The sub packets of this packet
@@ -148,33 +154,38 @@ public class Packet
      * @author James
      *         A sub-packet
      */
-    public static class SubPacket
+    public static class SubPacket implements Serializable
     {
+        
+        /**
+         * The serial ID
+         */
+        private static final long serialVersionUID = -1986100268185813328L;
         
         /**
          * How much space one unit of the packet takes up
          */
-        public final int    size;
+        public final int          size;
         
         /**
          * The name of the packet
          */
-        public final String type;
+        public final String       type;
         
         /**
          * How many units packet contains
          */
-        public int          amount;
+        public int                amount;
         
         /**
          * The last machine the packet was at
          */
-        public Machine      lastAt;
+        public Machine            lastAt;
         
         /**
          * The machine the packet is currently at
          */
-        public Machine      currentlyAt;
+        public Machine            currentlyAt;
         
         /**
          * @param type
