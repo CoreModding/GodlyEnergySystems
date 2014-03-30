@@ -1,9 +1,7 @@
 package info.coremodding.gps;
 
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 /**
  * @author James
@@ -19,14 +17,4 @@ public class GodlyPowerSystems
      */
     @Instance("zeus_GodlyPowerSystems")
     public static GodlyPowerSystems gps;
-    
-    /**
-     * @param evt
-     *            The event that triggered the method
-     */
-    @EventHandler
-    public void preinit(FMLPreInitializationEvent evt)
-    {
-        
-    }
 }
