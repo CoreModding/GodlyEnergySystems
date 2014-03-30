@@ -1,0 +1,3 @@
+Todo:
+    Fix removal of subpackets
+    Add size and maxsize recognition
