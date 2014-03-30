@@ -6,7 +6,7 @@ import net.minecraft.world.World;
 /**
  * @author James A location for easy transfer
  */
-public class GPSLocation
+public class Location
 {
     
     /**
@@ -40,7 +40,7 @@ public class GPSLocation
      * @param z
      *            The z position
      */
-    public GPSLocation(int x, int z)
+    public Location(int x, int z)
     {
         this.setZ(z);
         this.setX(x);
@@ -54,7 +54,7 @@ public class GPSLocation
      * @param z
      *            The z position
      */
-    public GPSLocation(int x, int y, int z)
+    public Location(int x, int y, int z)
     {
         this.setY(y);
         this.setZ(z);
@@ -71,7 +71,7 @@ public class GPSLocation
      * @param world
      *            The world
      */
-    public GPSLocation(int x, int y, int z, World world)
+    public Location(int x, int y, int z, World world)
     {
         this.setY(y);
         this.setZ(z);
@@ -87,7 +87,7 @@ public class GPSLocation
      * @param world
      *            The world
      */
-    public GPSLocation(int x, int z, World world)
+    public Location(int x, int z, World world)
     {
         this.setZ(z);
         this.setX(x);
