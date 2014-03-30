@@ -1,7 +1,6 @@
 package info.coremodding.gps.internal;
 
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.Instance;
 
 /**
  * @author James
@@ -11,9 +10,8 @@ import cpw.mods.fml.common.Mod.Instance;
 public class GodlyPowerSystems
 {
     
-    /**
-     * The mod instance used by forge
+    /*
+     * Watcha lookin at?
+     * This is just for making the mod show up. It does nothing.
      */
-    @Instance("zeus_GodlyPowerSystems")
-    public static GodlyPowerSystems gps;
 }
