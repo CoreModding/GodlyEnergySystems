@@ -1,5 +1,6 @@
-package info.coremodding.api.locations;
+package info.coremodding.gps.internal;
 
+import info.coremodding.api.locations.EDirection;
 import net.minecraft.world.World;
 
 /**
