@@ -48,39 +48,6 @@ public class Location
     /**
      * @param x
      *            The x position
-     * @param z
-     *            The z position
-     * @param dir
-     *            The direction
-     */
-    public Location(int x, int z, EDirection dir)
-    {
-        this.setZ(z);
-        this.setX(x);
-        this.setDir(dir);
-    }
-    
-    /**
-     * @param x
-     *            The x position
-     * @param z
-     *            The z position
-     * @param dir
-     *            The direction
-     * @param world
-     *            The world
-     */
-    public Location(int x, int z, EDirection dir, World world)
-    {
-        this.setZ(z);
-        this.setX(x);
-        this.setDir(dir);
-        this.setWorld(world);
-    }
-    
-    /**
-     * @param x
-     *            The x position
      * @param y
      *            The y position
      * @param z
@@ -91,45 +58,6 @@ public class Location
         this.setY(y);
         this.setZ(z);
         this.setX(x);
-    }
-    
-    /**
-     * @param x
-     *            The x position
-     * @param y
-     *            The y position
-     * @param z
-     *            The z position
-     * @param dir
-     *            The direction
-     */
-    public Location(int x, int y, int z, EDirection dir)
-    {
-        this.setY(y);
-        this.setZ(z);
-        this.setX(x);
-        this.setDir(dir);
-    }
-    
-    /**
-     * @param x
-     *            The x position
-     * @param y
-     *            The y position
-     * @param z
-     *            The z position
-     * @param dir
-     *            The direction
-     * @param world
-     *            The world
-     */
-    public Location(int x, int y, int z, EDirection dir, World world)
-    {
-        this.setY(y);
-        this.setZ(z);
-        this.setX(x);
-        this.setDir(dir);
-        this.setWorld(world);
     }
     
     /**
