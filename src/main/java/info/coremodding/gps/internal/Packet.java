@@ -4,6 +4,7 @@ import info.coremodding.gps.api.IncorrectValueException;
 import info.coremodding.gps.api.Machine;
 import info.coremodding.gps.api.PacketDoesntExistException;
 import info.coremodding.gps.api.PacketInDebtException;
+import info.coremodding.gps.api.exceptions.PacketTooLargeException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -41,18 +42,26 @@ public class Packet implements Serializable
     /**
      * @param packet
      *            The packet to merge with this
+     * @param machine
+     *            The machine to transfer to
+     * @throws PacketTooLargeException
+     *             The packet was too large to merge
      */
-    public void mergePacket(SubPacket packet)
+    public void mergePacket(SubPacket packet, Machine machine)
+            throws PacketTooLargeException
     {
+        if (calcSize(packet) >= machine.maxStorage()) { throw new PacketTooLargeException(); }
         for (SubPacket packet2 : this.subpackets)
         {
             if (packet2.type.equals(packet.type))
             {
                 packet2.amount += packet.amount;
+                packet2.notify(machine);
                 return;
             }
         }
         this.subpackets.add(packet);
+        calcSize();
     }
     
     /**
@@ -65,20 +74,28 @@ public class Packet implements Serializable
      *            The amount of units of this packet
      * @param size
      *            How much space this packet takes up
+     * @param machine
+     *            The machine to merge with
+     * @throws PacketTooLargeException
+     *             The packet was too large to create
      */
     public void newPacket(String type, int amount,
-            @SuppressWarnings("hiding") int size)
+            @SuppressWarnings("hiding") int size, Machine machine)
+            throws PacketTooLargeException
     {
         SubPacket packet = new SubPacket(type, amount, size);
+        if (calcSize(packet) >= machine.maxStorage()) { throw new PacketTooLargeException(); }
         for (SubPacket packet2 : this.subpackets)
         {
             if (packet2.type.equals(packet.type))
             {
                 packet2.amount += packet.amount;
+                packet2.notify(machine);
                 return;
             }
         }
         this.subpackets.add(packet);
+        calcSize();
     }
     
     /**
@@ -100,6 +117,7 @@ public class Packet implements Serializable
             {
                 packet.amount -= amount;
                 if (packet.amount < 1) { throw new PacketInDebtException(type); }
+                calcSize();
                 return;
             }
         }
@@ -111,24 +129,52 @@ public class Packet implements Serializable
      *            The type of packet to add to
      * @param amount
      *            The amount to add to that packet
+     * @param machine
+     *            The machine to add to
      * @throws PacketDoesntExistException
      *             The packet of the given type does not exist
      * @throws IncorrectValueException
      *             The packet's amount is below 0
+     * @throws PacketTooLargeException
+     *             The amount was too large to add
      */
-    public void addAmount(String type, int amount)
-            throws PacketDoesntExistException, IncorrectValueException
+    public void addAmount(String type, int amount, Machine machine)
+            throws PacketDoesntExistException, IncorrectValueException,
+            PacketTooLargeException
     {
         if (amount < 0) { throw new IncorrectValueException(); }
         for (SubPacket packet : this.subpackets)
         {
             if (packet.type.equals(type))
             {
+                if (calcSize(packet) >= machine.maxStorage()) { throw new PacketTooLargeException(); }
                 packet.amount += amount;
+                packet.notify(machine);
+                calcSize();
                 return;
             }
         }
         throw new PacketDoesntExistException(type);
+    }
+    
+    private void calcSize()
+    {
+        int _size = 0;
+        for (SubPacket packet : this.subpackets)
+        {
+            _size += packet.amount * packet.size;
+        }
+        this.size = _size;
+    }
+    
+    private int calcSize(SubPacket trypacket)
+    {
+        int _size = 0;
+        for (SubPacket packet : this.subpackets)
+        {
+            _size += packet.amountsize;
+        }
+        return _size + trypacket.amountsize;
     }
     
     /**
@@ -144,6 +190,7 @@ public class Packet implements Serializable
             if (packet.type.equals(type))
             {
                 packet = null;
+                calcSize();
                 return;
             }
         }
@@ -178,6 +225,11 @@ public class Packet implements Serializable
         public int                amount;
         
         /**
+         * The amount * the size
+         */
+        public int                amountsize;
+        
+        /**
          * The last machine the packet was at
          */
         public Machine            lastAt;
@@ -200,6 +252,8 @@ public class Packet implements Serializable
         {
             this.size = size;
             this.type = type;
+            this.amount = amount;
+            calcSize();
         }
         
         /**
@@ -210,6 +264,12 @@ public class Packet implements Serializable
         {
             this.lastAt = this.currentlyAt;
             this.currentlyAt = machine;
+            calcSize();
+        }
+        
+        private void calcSize()
+        {
+            this.amountsize = this.amount * this.size;
         }
     }
 }
