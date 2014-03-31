@@ -1,5 +1,6 @@
 package info.coremodding.gps.api;
 
+import info.coremodding.gps.api.exceptions.PacketTooLargeException;
 import info.coremodding.gps.internal.Location;
 import info.coremodding.gps.internal.Packet;
 import info.coremodding.gps.internal.Serializer;
@@ -38,7 +39,14 @@ public abstract class Machine extends TileEntity
                     {
                         if (machine.ShouldAccept(packet, this))
                         {
-                            machine.MachinePacket.mergePacket(packet);
+                            try
+                            {
+                                machine.MachinePacket.mergePacket(packet,
+                                        machine);
+                            } catch (PacketTooLargeException e1)
+                            {
+                                // Whoops
+                            }
                             try
                             {
                                 this.MachinePacket.removePacket(packet.type);
@@ -84,8 +92,8 @@ public abstract class Machine extends TileEntity
      */
     public ArrayList<Machine> getTouching()
     {
-        Location loc = new Location(this.xCoord, this.yCoord,
-                this.zCoord, this.worldObj);
+        Location loc = new Location(this.xCoord, this.yCoord, this.zCoord,
+                this.worldObj);
         if (loc.getWorld() != null)
         {
             ArrayList<Machine> touching = new ArrayList<>();
@@ -129,6 +137,7 @@ public abstract class Machine extends TileEntity
         {
             e.printStackTrace();
         }
+        writeNBT(nbt);
     }
     
     @Override
@@ -145,6 +154,7 @@ public abstract class Machine extends TileEntity
         {
             e.printStackTrace();
         }
+        readNBT(nbt);
     }
     
     /**
@@ -158,4 +168,9 @@ public abstract class Machine extends TileEntity
      *            The NBT to read from
      */
     public abstract void readNBT(NBTTagCompound nbt);
+    
+    /**
+     * @return The maximum size units this can hold
+     */
+    public abstract int maxStorage();
 }
