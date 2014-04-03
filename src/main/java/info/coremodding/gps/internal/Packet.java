@@ -1,9 +1,9 @@
 package info.coremodding.gps.internal;
 
-import info.coremodding.gps.api.IncorrectValueException;
 import info.coremodding.gps.api.Machine;
-import info.coremodding.gps.api.PacketDoesntExistException;
-import info.coremodding.gps.api.PacketInDebtException;
+import info.coremodding.gps.api.exceptions.IncorrectValueException;
+import info.coremodding.gps.api.exceptions.PacketDoesntExistException;
+import info.coremodding.gps.api.exceptions.PacketInDebtException;
 import info.coremodding.gps.api.exceptions.PacketTooLargeException;
 
 import java.io.Serializable;
