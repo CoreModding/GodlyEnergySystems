@@ -2,7 +2,7 @@ package info.coremodding.gps.api;
 
 /**
  * @author James
- *         Thrown when packet has negative values in amount
+ *         Thrown when packet has negative values in amount (in debt)
  */
 public class PacketInDebtException extends Exception
 {

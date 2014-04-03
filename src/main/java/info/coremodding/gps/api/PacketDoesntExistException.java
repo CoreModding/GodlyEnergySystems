@@ -2,7 +2,7 @@ package info.coremodding.gps.api;
 
 /**
  * @author James
- *         The exception for when a packet doesnt exist
+ *         The exception for when a packet doesn't exist in some sort of call.
  */
 public class PacketDoesntExistException extends Exception
 {
@@ -19,7 +19,7 @@ public class PacketDoesntExistException extends Exception
     
     /**
      * @param type
-     *            The type of the nonexistant packet
+     *            The type of the non-existent packet
      */
     public PacketDoesntExistException(String type)
     {

@@ -2,7 +2,8 @@ package info.coremodding.gps.api;
 
 /**
  * @author James
- *         A value was not valid
+ *         A value was not valid. This could be a method parameter, constructor
+ *         parameter, or anything else with an invalid value.
  */
 public class IncorrectValueException extends Exception
 {
