@@ -1,6 +1,5 @@
 package info.coremodding.gps.internal;
 
-import info.coremodding.api.locations.Direction;
 import net.minecraft.world.World;
 
 /**
@@ -10,29 +9,24 @@ public class Location
 {
     
     /**
-     * The direction
-     */
-    private Direction dir   = Direction.all;
-    
-    /**
      * The world
      */
-    private World      world = null;
+    private World world = null;
     
     /**
      * The x postion
      */
-    private int        x     = 0;
+    private int   x     = 0;
     
     /**
      * The y position
      */
-    private int        y     = -1;
+    private int   y     = -1;
     
     /**
      * The z position
      */
-    private int        z     = 0;
+    private int   z     = 0;
     
     /**
      * @param x
@@ -95,14 +89,6 @@ public class Location
     }
     
     /**
-     * @return The direction
-     */
-    public Direction getDir()
-    {
-        return this.dir;
-    }
-    
-    /**
      * @return The world
      */
     public World getWorld()
@@ -132,15 +118,6 @@ public class Location
     public int getZ()
     {
         return this.z;
-    }
-    
-    /**
-     * @param dir
-     *            The direction
-     */
-    void setDir(Direction dir)
-    {
-        this.dir = dir;
     }
     
     /**
