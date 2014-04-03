@@ -1,6 +1,5 @@
-package info.coremodding.gps.internal;
+package info.coremodding.gps.api;
 
-import info.coremodding.gps.api.Machine;
 import info.coremodding.gps.api.exceptions.IncorrectValueException;
 import info.coremodding.gps.api.exceptions.PacketDoesntExistException;
 import info.coremodding.gps.api.exceptions.PacketInDebtException;
