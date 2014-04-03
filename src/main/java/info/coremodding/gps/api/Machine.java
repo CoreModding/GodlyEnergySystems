@@ -14,6 +14,8 @@ import net.minecraft.tileentity.TileEntity;
 /**
  * @author James
  *         The base machine class
+ * 
+ *         All GPS machines MUST extend it, or a class extending it.
  */
 public abstract class Machine extends TileEntity
 {
@@ -45,7 +47,7 @@ public abstract class Machine extends TileEntity
                                         machine);
                             } catch (PacketTooLargeException e1)
                             {
-                                // Whoops
+                                // Whoops, let's just not do that...
                             }
                             try
                             {
@@ -63,11 +65,18 @@ public abstract class Machine extends TileEntity
     }
     
     /**
-     * Where you handle what you'd normally do in updateEntity.
+     * Where you handle what you'd normally do in updateEntity, as we override
+     * it to handle packet transfer. You can still override it, but you MUST
+     * create a way to handle packets in it.
      */
     public abstract void Update();
     
     /**
+     * Determine if you want to send a packet of the given value to the given
+     * machine.
+     * Returning true does NOT mean it will be sent. Other checks must still be
+     * made.
+     * 
      * @param packet
      *            The packet to check
      * @param machine
@@ -78,6 +87,11 @@ public abstract class Machine extends TileEntity
             Machine machine);
     
     /**
+     * Determine if you want to obtain a packet of the given value from the
+     * machine given.
+     * Returning true does NOT mean it will be sent. Other checks must still be
+     * made.
+     * 
      * @param packet
      *            The packet to accept
      * @param machine
@@ -88,7 +102,9 @@ public abstract class Machine extends TileEntity
             Machine machine);
     
     /**
-     * @return Touching machines
+     * @return Machine instances of tile entities touching this machine. Used
+     *         for packet transfer stuff. It could also be used for interacting
+     *         with other machines if called by you.
      */
     public ArrayList<Machine> getTouching()
     {
@@ -158,19 +174,30 @@ public abstract class Machine extends TileEntity
     }
     
     /**
+     * As we handle the normal writeToNBT, we want you to use this one. You
+     * could override the normal one, but you MUST know what you are doing and
+     * want to manually implement packet saving.
+     * 
      * @param nbt
      *            The NBT to write to
      */
     public abstract void writeNBT(NBTTagCompound nbt);
     
     /**
+     * As we handle the normal readFromNBT, we want you to use this one. You
+     * could override the normal one, but you MUST know what you are doing and
+     * want to manually implement packet reading.
+     * 
      * @param nbt
      *            The NBT to read from
      */
     public abstract void readNBT(NBTTagCompound nbt);
     
     /**
-     * @return The maximum size units this can hold
+     * @return The maximum size units this can hold. At this point there is
+     *         nothing stating how much something should take up, but this will
+     *         be determined later (high chance of it being whatever values you
+     *         implement!)
      */
     public abstract int maxStorage();
 }
