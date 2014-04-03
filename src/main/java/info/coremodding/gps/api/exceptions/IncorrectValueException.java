@@ -1,4 +1,4 @@
-package info.coremodding.gps.api;
+package info.coremodding.gps.api.exceptions;
 
 /**
  * @author James
