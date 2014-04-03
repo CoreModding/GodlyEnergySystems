@@ -3,7 +3,6 @@ package info.coremodding.gps.api;
 import info.coremodding.gps.api.exceptions.PacketDoesntExistException;
 import info.coremodding.gps.api.exceptions.PacketTooLargeException;
 import info.coremodding.gps.internal.Location;
-import info.coremodding.gps.internal.Packet;
 import info.coremodding.gps.internal.Serializer;
 
 import java.io.IOException;
